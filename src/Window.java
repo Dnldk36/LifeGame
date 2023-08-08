@@ -6,6 +6,7 @@ public class Window implements Runnable {
 
     JFrame frame;
     Box[][] boxes;
+    float time = 0f;
 
     @Override
     public void run() {
@@ -39,9 +40,11 @@ public class Window implements Runnable {
                             boxes[x][y].cell.addNear(boxes
                                     [(x + sx + Config.WIDTH) % Config.WIDTH]
                                     [(y + sy + Config.HEIGHT) % Config.HEIGHT].cell);
-        for (int x = 10; x < 15; x++) {
-            boxes[x][10].cell.status = Status.LIFE;
-            boxes[x][10].setColor();
+        int centerX = 0; int centerY = 0;
+        centerX = Config.WIDTH/2; centerY = Config.HEIGHT/2;
+        for (int x = centerX-5; x < centerX+5; x++) {
+            boxes[x][centerY].cell.status = Status.LIFE;
+            boxes[x][centerY].setColor();
         }
     }
 
@@ -55,6 +58,7 @@ public class Window implements Runnable {
         boolean flop = false;
 
         int score = 0;
+
 
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -73,6 +77,8 @@ public class Window implements Runnable {
 
                 }
             score+=life;
+            time+=Config.SLEEPMS/1000.;
+            System.out.println("Время: " + time + "c");
             System.out.println("Население: " + score);
             score=0;
             final String ANSI_CLS = "\u001b[2J";
