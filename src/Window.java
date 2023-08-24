@@ -78,13 +78,16 @@ public class Window implements Runnable {
                 }
             score+=life;
             time+=Config.SLEEPMS/1000.;
-            System.out.println("Время: " + time + "c");
+           /* System.out.println("Время: " + time + "c");
             System.out.println("Население: " + score);
             score=0;
             final String ANSI_CLS = "\u001b[2J";
             final String ANSI_HOME = "\u001b[H";
             System.out.print(ANSI_CLS + ANSI_HOME);
-            System.out.flush();
+            System.out.flush();*/
+            frame.repaint();
+            frame.setTitle("Life Game /" + "Time: " + time + "s /Alive: " + score);
+            score = 0;
         }
     }
 }
